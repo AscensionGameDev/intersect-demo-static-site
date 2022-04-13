@@ -1,0 +1,27 @@
+---
+const { text } = Astro.props;
+const patternRepoLink = /(?:([^#]+)|(#)(\d+))/g;
+const parts: { text: string; link: boolean; }[] = [];
+let matches: RegExpExecArray;
+while (matches = patternRepoLink.exec(text)) {
+    const [, text, hash, issueNumber] = matches;
+    if (text) {
+        parts.push({ text, link: false });
+    }
+
+    if (issueNumber) {
+        parts.push({ text: [hash, issueNumber].join(''), link: true });
+    } else if (hash) {
+        parts.push({ text: hash, link: false });
+    }
+}
+---
+
+{parts.map(({ text, link }) => link ? (<a class="issue" href={`https://github.com/AscensionGameDev/Intersect-Engine/issues/${text}`}>{text}</a>) : text)}
+
+<style>
+a.issue {
+    color: #7fbfff;
+    text-decoration: none;
+}
+</style>

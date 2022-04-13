@@ -1,0 +1,58 @@
+---
+const { images = [] } = Astro.props;
+const carouselBackground = images.map((image, index) => {
+    return `url(${image}) left 0% top 25%/cover no-repeat`;
+}).join(', ');
+const carouselBackgroundPosition = images.map((_, index) => `left ${100 * index}% top`).join(', ');
+---
+
+<section class="carousel" style={`background: ${carouselBackground};`}>
+    <div class="carousel__viewport">
+        {images.map((image) => (<div class="carousel__image" style={`background-image: ${carouselBackground};`}></div>))}
+    </div>
+</section>
+
+<style define:vars={{ carouselBackgroundPosition }}>
+.carousel {
+    --carousel-width: var(--article-width);
+    --carousel-height: calc(var(--carousel-width) * 9 / 64);
+    width: calc(var(--carousel-width));
+    height: var(--carousel-height);
+    /* background: var(--carouselBackground); */
+    background-position: var(--carouselBackgroundPosition);
+    background-size: contain, contain, contain;
+    /* background-position: left -100% top, left 0% top, left -100% top; */
+}
+
+@keyframes tonext {
+    75% {
+        left: 0;
+    }
+
+    95% {
+        left: 100%;
+    }
+
+    98% {
+        left: 100%;
+    }
+
+    99% {
+        left: 0;
+    }
+}
+
+/* .carousel__viewport {
+    width: calc(var(--carouselFrames) * var(--carousel-width) * 2);
+    height: 100%;
+    overflow: visible;
+}
+
+.carousel__image {
+    width: var(--carousel-width);
+    height: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: inline-block;
+} */
+</style>

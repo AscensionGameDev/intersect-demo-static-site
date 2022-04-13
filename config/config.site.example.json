@@ -1,0 +1,20 @@
+{
+    "branches": [
+        {
+            "name": "main",
+            "version": "v0.7.0.136-beta",
+            "banners": [
+                "/assets/banner-0.7.0-beta-day.png",
+                "/assets/banner-0.7.0-beta-sunset.png",
+                "/assets/banner-0.7.0-beta-night.png"
+            ]
+        },
+        {
+            "name": "prerelease",
+            "version": "v0.7.1.2-beta-prerelease",
+            "banners": [
+                "/assets/banner-0.7.0-beta-sunset.png"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,65 @@
+---
+// Style Imports
+import '../styles/global.css';
+import '../styles/home.css';
+
+// Component Imports
+import BuildPatchNotes from '../components/BuildPatchNotes.astro';
+import Carousel from '../components/Carousel.astro';
+
+// Utility imports
+import { getPatchNotes } from '../utilities/patchNotes';
+
+// Metadata imports
+import { branches } from '../metadata';
+
+const { buildCount, containPatchNotes, current } = Astro.props;
+const branch = branches.find(({ name }) => name === current);
+const builds = (await getPatchNotes({ branch: branch.name, project: 'intersect', version: branch.version })).slice(0, buildCount);
+---
+
+<article class="branch">
+    <header>
+        <a href={`/${branch.name}`}>
+            <h2>
+                <span>{branch.name}</span>
+                <span>v{branch.version}</span>
+            </h2>
+        </a>
+    </header>
+    <Carousel images={branch.banners} />
+    <section class="links">
+        <a href={`/installers/${branch.version}.zip`}>
+            <span>Download</span>
+        </a>
+    </section>
+    {containPatchNotes && builds.map(build => (<section class="patch-notes">
+        <BuildPatchNotes build={build} />
+    </section>))}
+</article>
+{!containPatchNotes && builds.map(build => (<article class="patch-notes">
+    <BuildPatchNotes build={build} />
+</article>))}
+
+<style>
+article > header {
+	background-color: #284B69;
+	padding: calc(max(10px, 1vmin) / 2) calc(max(10px, 1vmin) * 2);
+}
+
+article > section:not(.banner),
+article.patch-notes {
+	padding: calc(max(10px, 1vmin));
+}
+
+article > section:not(.banner):not(:last-of-type) {
+    padding-bottom: 0;
+}
+
+section.links > a {
+    text-decoration: none;
+    display: inline-block;
+    padding: calc(max(10px, 1vmin)) calc(max(10px, 1vmin));
+    background-color: rgba(255, 255, 255, 0.1);
+}
+</style>

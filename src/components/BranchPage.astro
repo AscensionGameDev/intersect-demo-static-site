@@ -1,0 +1,41 @@
+---
+// Style Imports
+import '../styles/global.css';
+import '../styles/home.css';
+
+// Component Imports
+import Page from '../components/Page.astro'
+import BranchSelector from '../components/BranchSelector.astro';
+import BranchDisplay from '../components/BranchDisplay.astro';
+
+// Metadata imports
+import { branches, siteTitle } from '../metadata';
+
+const { current } = Astro.props;
+---
+
+<Page title={`${current} - ${siteTitle}`}>
+    <li slot="nav-item">
+        <BranchSelector branches={branches} current={current} />
+    </li>
+    <BranchDisplay current={current} buildCount="50" />
+</Page>
+
+<style>
+article > header {
+	background-color: #284B69;
+	padding: calc(max(10px, 1vmin) / 2) calc(max(10px, 1vmin) * 2);
+}
+
+article > section:not(.banner),
+article.patch-notes {
+	padding: calc(max(10px, 1vmin));
+}
+
+section.links > a {
+    text-decoration: none;
+    display: inline-block;
+    padding: calc(max(10px, 1vmin)) calc(max(10px, 1vmin));
+    background-color: rgba(255, 255, 255, 0.1);
+}
+</style>

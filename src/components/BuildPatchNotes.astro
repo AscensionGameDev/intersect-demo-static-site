@@ -1,0 +1,38 @@
+---
+import moment from 'moment';
+import RepoLink from './RepoLink.astro';
+import { Build } from '../utilities/patchNotes';
+const build: Build = Astro.props.build;
+---
+
+<div>
+    <header>
+        <h3>
+            <span>v{build.version}</span>
+            <span>{moment(build.date).format('lll')}</span>
+        </h3>
+    </header>
+    {build.changes.map(change => (<article class="change">
+        <header>
+            <h4>
+                <span>
+                    <a class="commit" href={`https://github.com/AscensionGameDev/Intersect-Engine/tree/${change.commit}`}>{change.commit}</a>
+                </span>
+                <span>{moment(change.date).format('lll')}</span>
+            </h4>
+        </header>
+        <section class="comments">
+            {change.comment.split('\n').map(part => (<p><RepoLink text={part} /></p>))}
+        </section>
+    </article>))}
+</div>
+
+<style>
+a.commit {
+    color: #7fbfff;
+}
+
+article.change {
+	padding: calc(max(5px, 0.5vmin)) 0;
+}
+</style>

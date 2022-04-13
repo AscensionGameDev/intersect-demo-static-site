@@ -1,0 +1,88 @@
+---
+const { title } = Astro.props;
+---
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>{title}</title>
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+</head>
+<body>
+    <header>
+        <slot name="header">
+            <slot name="logo">
+                <section class="logo">
+                    <a href="/" alt="Back to directory">
+                        <img src="/assets/logo.svg" alt="Intersect Logo" class="logo square" role="presentation" />
+                        <span>Intersect Demos</span>
+                    </a>
+                </section>
+            </slot>
+            <slot name="nav">
+                <nav class="menu horizontal">
+                    <ul class="nav">
+                        <slot name="nav-item"></slot>
+                    </ul>
+                </nav>
+            </slot>
+        </slot>
+    </header>
+    <main>
+        <slot></slot>
+    </main>
+</body>
+</html>
+
+
+<!-- <main>
+    <nav>
+        <span><a href="/">Back to directory</a></span>
+    </nav>
+
+    <header>
+        <div>
+            <img src="/assets/logo.png" alt="Intersect logo">
+            <h1>Intersect Engine <a href="https://github.com/AscensionGameDev/Intersect-Engine/tree/main">{branchName}</a> Branch Demo</h1>
+        </div>
+    </header>
+
+    <article>
+        <section>
+        </section>
+    </article>
+</main> -->
+
+<style>
+
+    .banner {
+        text-align: center;
+        font-size: 1.2rem;
+        background: var(--color-light);
+        padding: 1em 1.5em;
+        padding-left: 0.75em;
+        border-radius: 4px;
+    }
+
+    pre,
+    code {
+        font-family: var(--font-mono);
+        background: var(--color-light);
+        border-radius: 4px;
+    }
+
+    pre {
+        padding: 1em 1.5em;
+    }
+
+    .tree {
+        line-height: 1.2;
+    }
+
+    code:not(.tree) {
+        padding: 0.125em;
+        margin: 0 -0.125em;
+    }
+</style>

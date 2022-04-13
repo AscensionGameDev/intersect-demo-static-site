@@ -1,6 +1,6 @@
 {
-  "name": "@example/starter",
-  "version": "0.0.1",
+  "name": "@ascensiongamedev/intersect-demo-static-site",
+  "version": "0.7.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -10,7 +10,17 @@
   },
   "devDependencies": {
     "@astrojs/preact": "^0.0.2",
+    "@types/moment-timezone": "^0.5.30",
+    "@types/node-fetch": "2",
     "astro": "^1.0.0-beta.0",
-    "preact": "^10.6.5"
+    "autoprefixer": "^10.4.4",
+    "preact": "^10.6.5",
+    "sass": "^1.50.0",
+    "stylelint": "^14.6.1",
+    "stylelint-config-standard": "^25.0.0"
+  },
+  "dependencies": {
+    "moment-timezone": "^0.5.34",
+    "node-fetch": "2"
   }
 }

@@ -2,6 +2,10 @@
 dist/
 .output/
 
+# custom assets
+/public/assets/banners
+/public/installers
+
 # configuration
 /config/*
 !/config/*.example.json

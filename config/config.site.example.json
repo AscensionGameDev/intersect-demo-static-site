@@ -1,19 +1,19 @@
 {
     "branches": [
         {
-            "name": "main",
-            "version": "v0.7.0.136-beta",
+            "name": "prerelease",
+            "version": "0.7.1.8-beta-prerelease",
             "banners": [
-                "/assets/banner-0.7.0-beta-day.png",
-                "/assets/banner-0.7.0-beta-sunset.png",
-                "/assets/banner-0.7.0-beta-night.png"
+                "/assets/banners/banner-0.7.0-beta-sunset.png"
             ]
         },
         {
-            "name": "prerelease",
-            "version": "v0.7.1.2-beta-prerelease",
+            "name": "main",
+            "version": "0.7.0.137-beta",
             "banners": [
-                "/assets/banner-0.7.0-beta-sunset.png"
+                "/assets/banners/banner-0.7.0-beta-day.png",
+                "/assets/banners/banner-0.7.0-beta-sunset.png",
+                "/assets/banners/banner-0.7.0-beta-night.png"
             ]
         }
     ]
